@@ -1,0 +1,29 @@
+<fieldset class="fieldsetcontent">
+		<legend>第一步：我要贷款</legend>
+		    <div style="margin-bottom:10px;margin-top:10px;">
+				<label>贷款类型:</label> 
+				<select style="width:200px;" ng-model="operation.type" ng-options="y.name for y in types">
+				</select>
+			</div>
+			<div style="margin-bottom:10px;">
+				<label>贷款金额:</label> 
+				<select style="width:200px;" ng-model="operation.amount" ng-options="y.name for y in amounts">
+				</select>
+			</div>
+			<div style="margin-bottom:10px;">
+				<label>贷款期限:</label> 
+				<select style="width:200px;" ng-model="operation.period" ng-options="y.name for y in periods">
+				</select>
+			</div>
+			<div style="margin-bottom:10px;margin-top:10px;">
+				<label>所在省份:</label> 
+				<select style="width:200px;" ng-change="provinceChange(operation.province)" ng-model="operation.province" ng-options="y.name for y in provinces">
+				</select>
+			</div>
+			<div style="margin-bottom:10px;">
+				<label>所在市区:</label> 
+				<select style="width:200px;" ng-model="operation.city" ng-options="y.name for y in currentProvince.citys">
+				</select>
+			</div>
+			<button ng-click="apply()" class="button radius" style="width:270px;">我要贷款</button>
+			</fieldset>

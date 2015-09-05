@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StaticRolesConfig enabled="true">
+	<!--匿名用户(未登陆)角色,privilege为-1
+		id:角色ID
+		limitedType:受限类型,1:不受限;0:部分许可;-1:全部受限
+		extendsRoleIds:继承角色,该角色拥有所继承角色的所有权限
+	-->
+	<!--全部用户类型：
+		Lender 
+			0：非正式用户；1：正式用户(暂未用)
+		Borrower
+			10：有查看权限的企业用户；11：申请融资权限的企业用户 ；12：有融资权限的企业用户；14：审核未通过
+		Admin 
+			20:查看权限; 21:所有权限
+	 -->
+	<!-- 匿名用户 -->
+	<Role id="anonymous" privilege = "-1" limitedType="0" extendsRoleIds="">
+		<permissionRules>
+			<PermissionRule  entityLimitType="com.furoom.remote.batch.IEasyBatchService"/>
+			<PermissionRule  entityLimitType="fsm.service.IUserService"/>
+			<PermissionRule  entityLimitType="fsm.service.IOperationService" operations="applyOperation"></PermissionRule>
+			<PermissionRule  entityLimitType="fsm.service.IProductService" operations="queryAllAgentsByProduct;queryAllByTypeAndCityAndStateAndOrder;find"></PermissionRule>
+		</permissionRules>
+	</Role>
+	<!-- ******************************User********************************* -->
+	<Role privilege = "0" limitedType="0" extendsRoleIds="anonymous">
+        <permissionRules>
+        	<PermissionRule  entityLimitType="fsm.service.IOperationService" operations="findAllOperationByUserAndStateAndType;find;applyOperation;bindAgentAndProductToOperation;updateOperation;reApplyOperation"/>
+        </permissionRules>
+    </Role>
+    
+    
+    
+    <!-- ******************************Agent init********************************* -->
+	<Role id="agentInit" privilege = "10" limitedType="0" extendsRoleIds="anonymous">
+        <permissionRules>
+        	<PermissionRule  entityLimitType="fsm.service.IProductService" operations="queryAllMyProductByState;queryAllByOrgAndState;queryAllByOrgAndCityAndState;queryAllByState"/>
+        	<PermissionRule  entityLimitType="fsm.service.IOperationService" operations="findAllOperationByAgentAndStateAndType"/>
+        </permissionRules>
+    </Role>
+    
+    
+    <!-- ******************************Agent audit success********************************* -->
+	<Role id="agentAuditSuccess" privilege = "11" limitedType="0" extendsRoleIds="agentInit">
+        <permissionRules>
+        <PermissionRule  entityLimitType="fsm.service.IProductService" operations="createProduct;addProductAction;applyAuditProduct;addRelationTo;removeRelationTo;updateProduct"/>
+        </permissionRules>
+    </Role>
+    
+    
+    <!-- ******************************Agent audit refuse********************************* -->
+	<Role id="agentAuditRefuse" privilege = "12" limitedType="0" extendsRoleIds="anonymous">
+        <permissionRules>
+        </permissionRules>
+    </Role>
+    
+    
+    
+    <!-- ******************************Auditor********************************* -->
+	<Role id="auditor" privilege = "20" limitedType="0" extendsRoleIds="agentAuditSuccess">
+        <permissionRules>
+         <PermissionRule  entityLimitType="fsm.service.IUserService" operations="findAllByPrivilege;auditAgent"/>
+         <PermissionRule  entityLimitType="fsm.service.IProductService" operations="auditProduct"/>
+         <PermissionRule  entityLimitType="fsm.service.IOperationService" operations="auditOperation"/>
+        </permissionRules>
+    </Role>
+    
+    
+    <!-- ******************************Operator********************************* -->
+	<Role id="operator" privilege = "30" limitedType="0" extendsRoleIds="auditor">
+        <permissionRules>
+        </permissionRules>
+    </Role>
+    
+    
+    
+     
+     
+    
+    <!-- ******************************管理员********************************* -->
+    <!-- 所有权限 -->
+	<Role privilege = "100" limitedType="1">
+		<permissionRules>
+		</permissionRules>
+	</Role>
+</StaticRolesConfig>

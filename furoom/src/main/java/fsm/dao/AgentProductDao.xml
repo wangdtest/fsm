@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fsm.dao.IAgentProductDao">
+	<select id="find" resultType="fsm.model.AgentProduct">
+	   select * from AgentProduct 
+	   where userId=#{userId} and productId=#{productId}	   
+	</select>
+	<select id="findAllByAgent" resultType="fsm.model.AgentProduct">
+	   select * from AgentProduct 
+	   where userId=#{userId}	   
+	</select>
+	<select id="findAllByProduct" resultType="fsm.model.AgentProduct">
+		select *
+		from AgentProduct where productId=#{productId}
+	</select>
+	<insert id="add">
+		insert into
+		AgentProduct(userId, productId)
+		values(#{userId},#{productId})
+	</insert>
+	<delete id="remove">
+		delete from AgentProduct where userId = #{userId} and productId = #{productId}
+	</delete>
+</mapper>

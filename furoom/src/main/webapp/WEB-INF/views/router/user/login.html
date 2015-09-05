@@ -1,0 +1,33 @@
+<fieldset class="fieldsetcontent">
+			<legend>用户登录</legend>
+			<form name="loginForm" novalidate>
+			<div style="margin-bottom:10px;margin-top:10px;">
+				<label style="width:200px">用户名:</label> 
+				<input type="text" style="width:200px;" placeholder="用户名" name="loginid" ng-model="loginid" ng-minlength=3 required />
+				<div class="error" ng-show="loginForm.loginid.$dirty && loginForm.loginid.$invalid">
+				<small class="error" ng-show="loginForm.loginid.$error.required">用户名不能为空</small> 
+				<small class="error"  ng-show="loginForm.loginid.$error.minlength">用户名最小长度不能小于3</small> 
+				</div>
+			</div>
+			<div style="margin-bottom:10px;margin-top:10px;">
+				<label style="width:200px">密码&nbsp;&nbsp;:</label> 
+				<input type="password" style="width:200px;" placeholder="密码" name="password" ng-model="password" ng-minlength=6 required />
+				<div class="error" ng-show="loginForm.password.$dirty && loginForm.password.$invalid">
+				<small class="error" ng-show="loginForm.password.$error.required">密码不能为空</small> 
+				<small class="error"  ng-show="loginForm.password.$error.minlength">密码最小长度不能小于6</small> 
+				</div>
+			</div>
+			<div style="margin-bottom:10px;margin-top:10px;">
+				<label style="width:200px;">验证码:</label> 
+				<input type="text" style="width:90px;" placeholder="图片验证码" name="picValidate" ng-model="picValidate" ng-minlength=4 ng-maxlength=4 required />
+				<img class="form-control" style="width:100px; height:22px;" src="{{validateUrl}}" ng-click="refresh()" title="点击图片刷新验证码" alt="点击图片刷新验证码"></img>
+				<div class="error" ng-show="loginForm.picValidate.$dirty && loginForm.picValidate.$invalid">
+				<small class="error" ng-show="loginForm.picValidate.$error.required">图片验证码不能为空</small> 
+				<small class="error"  ng-show="loginForm.picValidate.$error.minlength">图片验证码最小长度不能小于4</small> 
+				<small class="error" ng-show="loginForm.picValidate.$error.maxlength">图片验证码最大长度不能大于4</small>
+				</div>
+				<div style="clear:both;"></div>
+			</div>
+			<button ng-click="login()" class="button radius" style="width:270px;">登录</button>
+				</form>
+			</fieldset>

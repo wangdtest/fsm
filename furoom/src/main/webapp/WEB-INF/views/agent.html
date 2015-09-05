@@ -1,0 +1,30 @@
+<html ng-app = "agentApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="/resources/FuRoomClient.js"></script>
+<script src="/furoom/fsm.service.IUserService/json"></script>
+<script src="/furoom/fsm.service.IOperationService/json"></script>
+<script src="/furoom/fsm.service.IProductService/json"></script>
+<link href="css/myaccount.css" rel="stylesheet">
+</head>
+<body>
+		<div class='wholecontent' ng-controller="WholeCtrl">
+		<div class='head'><span style="display:{{a_display}}"><a href="#/login">登录</a>|<a href="#">注册</a></span><span style="display:{{c_display}}">{{usercontent}}【<a href="#" ng-click="logout()">退出</a>】</span></div>
+		<div class='banner'>
+		
+		</div>
+		<div class='navigator' style="display:{{c_display}}">
+			<ul>
+            <li ng-repeat="tab in tabs" 
+                ng-class="{active:isActiveTab(tab.url)}" 
+                ng-click="onClickTab(tab)">{{tab.title}}</li>
+        	</ul>
+		</div>
+		<div ng-view></div>
+		</div>
+		<script src="/resources/angular.js"></script>
+		<script src="/resources/angular-route.js"></script>
+		<script src="controller/config.js"></script>
+		<script src="controller/AgentController.js"></script>
+</body>
+</html>

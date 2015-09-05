@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fsm.dao.IUserAccountDao">
+	<insert id="create" parameterType="fsm.model.UserAccount"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into
+		UserAccount(total,freeze,usable,used,totalincome)
+		values(#{total},#{freeze},#{usable},#{used},#{totalincome})
+	</insert>
+	<select id="find" parameterType="Integer" resultType="fsm.model.UserAccount">
+		select *
+		from UserAccount where id=#{accountId}
+	</select>
+	<update id="recharge">
+		update UserAccount set
+		total=total+#{amount},usable=usable+#{amount}
+		where id=#{accountId}
+	</update>
+	<update id="freeze">
+		update UserAccount set
+		freeze=freeze+#{amount},usable=usable-#{amount}
+		where id=#{accountId}
+	</update>
+	<update id="unfreeze">
+		update UserAccount set
+		freeze=freeze-#{amount},usable=usable+#{amount}
+		where id=#{accountId}
+	</update>
+	<update id="pay">
+		update UserAccount set
+		freeze=freeze-#{principalAmount},used=used+#{principalAmount}
+		where id=#{accountId}
+	</update>
+	<update id="repay">
+		update UserAccount set
+		total=total+#{incomeAmount},totalincome=totalincome+#{incomeAmount},used=used-#{principalAmount},usable=usable+#{principalAmount}+#{incomeAmount}
+		where id=#{accountId}
+	</update>
+	<update id="purchaseBack">
+		update UserAccount set
+		total=total+#{fee},usable=usable+#{chiefAmount}+#{fee}, used=used-#{chiefAmount},totalincome=totalincome+#{fee} 
+		where id=#{accountId}
+	</update>
+	<update id="purchase">
+		update UserAccount set
+		total=total+#{interest},usable=usable+#{chiefAmount}+#{interest}, used=used-#{chiefAmount},totalincome=totalincome+#{interest} 
+		where id=#{accountId}
+	</update>
+	<update id="cash">
+		update UserAccount set
+		total=total-#{amount},usable=usable-#{amount}
+		where id=#{accountId}
+	</update>
+	<delete id="delete">
+	   delete from UserAccount where id=#{accountId}
+	</delete>
+	<select id="countAll" resultType="int">
+	   select count(*) from UserAccount
+	</select>
+	<select id="findAll" resultType="fsm.model.UserAccount">
+       select * from UserAccount
+       LIMIT #{offset}, #{recnum}
+    </select>
+</mapper>

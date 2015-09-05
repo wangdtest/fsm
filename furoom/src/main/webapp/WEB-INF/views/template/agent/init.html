@@ -1,0 +1,11 @@
+<table class="mytable">
+	<tr><th>企业名称</th><th>贷款名称</th><th>状态</th><th>编辑</th><th>审核</th></tr>
+	<tr ng-repeat='data in datas'>
+		<td><span>{{data.companyname}}</span></td>
+		<td><span>{{data.productname}}</span></td>
+		<td><span>{{data.state}}</span></td>
+		<td><button ng-click='edit(data.id)'>编辑</button></td>
+		<td><button ng-click='apply(data.id)'>申请审核</button></td>
+	</tr>
+</table>
+<div class="mytail">总共 {{total}}条</div>

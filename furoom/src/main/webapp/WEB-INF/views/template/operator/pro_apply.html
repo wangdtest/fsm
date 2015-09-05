@@ -1,0 +1,10 @@
+<table class="mytable">
+	<tr><th>企业名称</th><th>贷款名称</th><th>状态</th><th>操作</th></tr>
+	<tr ng-repeat='data in datas'>
+		<td><span>{{data.companyname}}</span></td>
+		<td><span>{{data.productname}}</span></td>
+		<td><span>{{data.state}}</span></td>
+		<td><button ng-click='propass(data)'>通过</button><button ng-click='prorefuse(data)'>拒绝</button></td>
+	</tr>
+</table>
+<div class="mytail">总共 {{total}}条</div>

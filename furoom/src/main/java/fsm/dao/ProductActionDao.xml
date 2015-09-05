@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fsm.dao.IProductActionDao">
+	<select id="findAll" resultType="fsm.model.ProductAction">
+	   select * from ProductAction 
+	   where productId=#{productId} order by ind asc	   
+	</select>
+	<select id="find" parameterType="Integer" resultType="fsm.model.ProductAction">
+		select *
+		from ProductAction where id=#{id}
+	</select>
+	<insert id="create" parameterType="fsm.model.ProductAction"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into
+		ProductAction(ind,productId,title,description,estimatedTime)
+		values(#{ind},#{productId},#{title},#{description},#{estimatedTime})
+	</insert>
+	<delete id="remove" parameterType="Integer">
+		delete from ProductAction where id = #{id}
+	</delete>
+</mapper>

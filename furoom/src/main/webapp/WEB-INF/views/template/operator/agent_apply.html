@@ -1,0 +1,12 @@
+<table class="mytable">
+	<tr><th>姓名</th><th>性别</th><th>企业ID</th><th>省</th><th>市</th><th>操作</th></tr>
+	<tr ng-repeat='data in datas'>
+		<td><span>{{data.name}}</span></td>
+		<td><span>{{data.sex}}</span></td>
+		<td><span>{{data.companyname}}</span></td>
+		<td><span>{{data.province}}</span></td>
+		<td><span>{{data.city}}</span></td>
+		<td><button ng-click='pass(data)'>通过</button><button ng-click='refuse(data)'>拒绝</button></td>
+	</tr>
+</table>
+<div class="mytail">总共 {{total}}条</div>

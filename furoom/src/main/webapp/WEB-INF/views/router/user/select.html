@@ -1,0 +1,18 @@
+	<fieldset id="top">
+		<legend>您好：{{user.name}}</legend>
+		<div class="textcontent">
+		<span class="grey">贷款类型</span><span class="orange">{{loanTypeName}}</span><span class="grey">贷款所在省</span><span class="orange">{{provinceName}}</span><br>
+		<span class="grey">贷款金额</span><span class="orange">{{amountName}}</span><span class="grey">贷款所在市</span><span class="orange">{{cityName}}</span><br>
+		<span class="grey">贷款期限</span><span class="orange">{{periodName}}</span><span class="grey"></span><br>
+		</div>
+	</fieldset>
+	<div id="tabs">
+        <ul>
+            <li ng-repeat="tab in tabs" 
+                ng-class="{active:isActiveTab(tab.state)}" 
+                ng-click="onClickTab(tab)">{{tab.title}}</li>
+        </ul>
+        <div id="mainView">
+            <div ng-include="currentTab.url"></div>
+        </div>
+    </div>

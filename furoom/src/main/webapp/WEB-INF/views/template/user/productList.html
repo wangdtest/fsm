@@ -1,0 +1,30 @@
+<div style="border-bottom:solid grey 1px; margin-left:0px; margin-right:0px; padding-left:10px; padding-top:5px; min-height:50px;" ng-repeat="data in datas">
+	<table style="width:95%;">
+		<tr>
+			<td rowspan=2 valign=top><image src="/img/aaaa.jpeg" style="border:solid grey 1px;"></image></td>
+			<td colspan=4><span style="color:blue; font-weight:bold; font-size:18px;">{{data.companyname}}-{{data.productname}}</span></td>
+		</tr>
+		<tr>
+			<td width=27% style="padding-left:0px; padding-top:10px;">
+				{{data.profits[0]}}<br>
+				{{data.profits[1]}}<br>
+				{{data.profits[2]}}
+			</td>
+			<td width=30% style="border-left: dotted 1px grey; padding-left:15px; padding-top:10px;">
+				{{data.requires[0]}}<br>
+				{{data.requires[1]}}<br>
+				{{data.requires[2]}}
+			</td>
+			<td width=28% style="border-left: dotted 1px grey; padding-left:15px; padding-top:10px;">
+				总利息：1.01万元<br>
+				月供：5457元<br>
+				月利率0%+月费2.58%
+			</td>
+			<td width=15% style="border-left: dotted 1px grey; padding-left:15px; padding-top:10px;">
+				<button ng-click="showDetail(data.id)">查看</button><br>
+				成功率95%<br>
+				1257人申请
+			</td>
+		</tr>
+	</table>
+</div>

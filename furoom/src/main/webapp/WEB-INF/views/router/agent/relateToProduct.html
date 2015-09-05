@@ -1,0 +1,13 @@
+<table class="mytable">
+	<tr><th>企业名称</th><th>贷款名称</th><th>所在城市</th><th>状态</th><th>关联状态</th><th>操作</th></tr>
+	<tr ng-repeat='data in datas'>
+		<td><span>{{data.companyname}}</span></td>
+		<td><span>{{data.productname}}</span></td>
+		<td><span>{{data.city}}</span></td>
+		<td><span>{{data.state}}</span></td>
+		<td><span>{{data.related}}</span></td>
+		<td><button ng-click='changeRelation(data)'>更改</button></td>
+	</tr>
+</table>
+<div class="mytail">总共 {{total}}条</div>
+<div class="mytail"><button ng-click='createproduct()'>创建产品</button></div>

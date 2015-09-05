@@ -1,0 +1,12 @@
+<table class="mytable">
+	<tr><th>贷款类型</th><th>贷款金额</th><th>贷款期限</th><th>申请时间</th><th>状态</th><th>详情</th></tr>
+	<tr ng-repeat='data in datas'>
+		<td><span>{{data.type}}</span></td>
+		<td><span>{{data.amount}}</span></td>
+		<td><span>{{data.period}}</span></td>
+		<td><span>{{data.applytime}}</span></td>
+		<td><span>{{data.state}}</span></td>
+		<td><button>查看</button></td>
+	</tr>
+</table>
+<div class="mytail">总共 {{total}}条</div>

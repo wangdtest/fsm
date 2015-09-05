@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fsm.dao.IOrganizationDao">
+	<select id="findAll" resultType="fsm.model.Organization">
+	   select * from Organization   
+	</select>
+	<select id="find" parameterType="Integer" resultType="fsm.model.Organization">
+		select *
+		from Organization where id=#{id}
+	</select>
+	<insert id="create" parameterType="fsm.model.Organization"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into
+		Organization(code,name,fullName,license)
+		values(#{code},#{name},#{fullName},#{license})
+	</insert>
+</mapper>

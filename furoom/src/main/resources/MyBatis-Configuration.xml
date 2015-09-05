@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<mappers>
+		<mapper resource="fsm/dao/UserDao.xml" />
+		<mapper resource="fsm/dao/UserAccountDao.xml" />
+		<mapper resource="fsm/dao/OrganizationDao.xml" />
+		<mapper resource="fsm/dao/ProductActionDao.xml" />
+		<mapper resource="fsm/dao/ProductDao.xml" />
+		<mapper resource="fsm/dao/StateLogDao.xml" />
+		<mapper resource="fsm/dao/OperationActionDao.xml" />
+		<mapper resource="fsm/dao/OperationDao.xml" />
+		<mapper resource="fsm/dao/AgentProductDao.xml" />
+	</mappers>
+</configuration>

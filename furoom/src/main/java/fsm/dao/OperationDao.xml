@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fsm.dao.IOperationDao">
+	<select id="countByUserIdAndStateAndType" resultType="int">
+	   select count(*) from Operation 
+	   where 1=1 
+	   <if test="userId != null">
+	   	and userId=#{userId}	   
+		</if>
+		<if test="state != -1">
+	   	and state=#{state}	   
+		</if>
+		<if test="loanType != -1">
+	   	and loanType=#{loanType}	   
+		</if>
+	</select>
+	<select id="findAllByUserIdAndStateAndType" resultType="fsm.model.Operation">
+	   select * from Operation 
+	   where 1=1 
+	   <if test="userId != null">
+	   	and userId=#{userId}	   
+		</if>
+		<if test="state != -1">
+	   	and state=#{state}	   
+		</if>
+		<if test="loanType != -1">
+	   	and loanType=#{loanType}	   
+		</if>
+		order by createtime desc 
+		LIMIT #{offset}, #{recnum}
+	</select>
+	<select id="findAllByAgentIdAndStateAndType" resultType="fsm.model.Operation">
+	   select * from Operation 
+	   where 1=1 
+	   <if test="agentId != null">
+	   	and agentId=#{agentId}	   
+		</if>
+		<if test="state != -1">
+	   	and state=#{state}	   
+		</if>
+		<if test="loanType != -1">
+	   	and loanType=#{loanType}	   
+		</if>
+		order by createtime desc
+	</select>
+	<select id="find" parameterType="Integer" resultType="fsm.model.Operation">
+		select *
+		from Operation where id=#{id}
+	</select>
+	<insert id="create" parameterType="fsm.model.Operation"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into
+		Operation(state,productId,userId,agentId,loanType,amount,period,province,city,createtime,lastmodifytime)
+		values(#{state},#{productId},#{userId},#{agentId},#{loanType},#{amount},#{period},#{province},#{city},#{createtime},#{lastmodifytime})
+	</insert>
+	<update id="changeState">
+		update Operation set
+		state=#{state},
+		 lastmodifytime=#{lastmodifytime} where id=#{id}
+	</update>
+	<update id="update">
+		update Operation set
+		<if test="productId != null">
+	   	 productId=#{productId},   
+		</if>
+		<if test="agentId != null">
+	   	 agentId=#{agentId},   
+		</if>
+		<if test="loanType!=-1">
+		loanType = #{loanType},
+		</if>
+		<if test="amount>0">
+		amount = #{amount},
+		</if>
+		<if test="period>0">
+		period = #{period},
+		</if>
+		<if test="province != null">
+	   	 province=#{province},   
+		</if>
+		<if test="city != null">
+	   	 city=#{city},   
+		</if>
+		lastmodifytime=#{lastmodifytime} where id=#{id}
+	</update>
+</mapper>

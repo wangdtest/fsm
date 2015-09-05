@@ -1,0 +1,26 @@
+.myhead{
+	width:100%;
+	background-color:#eee;
+	text-align:center;
+	padding-top:10px;
+	padding-bottom:10px;
+	margin-bottom:10px;
+	font-size : 20px
+}
+.mytail{
+	width:100%;
+	margin-top:10px;
+	text-align:center;
+	font-size : 18px
+}
+
+.mytable {
+	width:100%
+}
+.mytable th{
+	border:solid green 1px
+}
+.mytable td{
+	text-align:center;
+	border:solid yellow 1px
+}

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fsm.dao.IProductDao">
+	<select id="countAllByState" resultType="int">  <!-- 查询表中记录总数 -->
+		select count(*) c from Product
+		<if test="state != -1">
+	   		where state=#{state}	   
+		</if>
+	</select>
+	<select id="findAllByState" resultType="fsm.model.Product">
+	   select * from Product 
+	   <if test="state != -1">
+	   		where state=#{state}	   
+		</if>
+	   LIMIT #{offset}, #{recnum}	   
+	</select>
+	<select id="countAllByCityAndState" resultType="int">  <!-- 查询表中记录总数 -->
+		select count(*) c from Product where cityCode = #{cityCode}
+		<if test="state != -1">
+	   		and state=#{state}	   
+		</if>
+	</select>
+	<select id="findAllByCityAndState" resultType="fsm.model.Product">
+	   select * from Product where cityCode = #{cityCode}
+	   <if test="state != -1">
+	   		and state=#{state}	   
+		</if>
+	   LIMIT #{offset}, #{recnum}	   
+	</select>
+	<select id="countAllByTypeAndCityAndState" resultType="int">
+	   select count(*) from Product where loanType=#{loanType} and cityCode = #{cityCode}
+	   <if test="state != -1">
+	   		and state=#{state}	   
+		</if>
+	</select>
+	<select id="findAllByTypeAndCityAndState" resultType="fsm.model.Product">
+	   select * from Product where loanType=#{loanType} and cityCode = #{cityCode}
+	   <if test="state != -1">
+	   		and state=#{state}	   
+		</if>
+	</select>
+	<select id="findAllByOrganizationIdAndCityAndState" resultType="fsm.model.Product">
+	   select * from Product where organizationId=#{organizationId} and cityCode = #{cityCode}
+	   <if test="state != -1">
+	   		and state=#{state}	   
+		</if>
+	</select>
+	
+	<select id="countAllByOrganizationIdAndState" resultType="int">  <!-- 查询表中记录总数 -->
+		select count(*) c from Product where organizationId = #{organizationId}
+		<if test="state != -1">
+	   		and state=#{state}	   
+		</if>
+	</select>
+	<select id="findAllByOrganizationIdAndState" resultType="fsm.model.Product">
+	   select * from Product where organizationId = #{organizationId}
+	   <if test="state != -1">
+	   		and state=#{state}	   
+		</if>
+	   LIMIT #{offset}, #{recnum}	   
+	</select>
+	<select id="find" parameterType="Integer" resultType="fsm.model.Product">
+		select *
+		from Product where id=#{id}
+	</select>
+	<insert id="create" parameterType="fsm.model.Product"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into
+		Product(title, state,loanType,cityCode,organizationId,profits,requires)
+		values(#{title},#{state},#{loanType},#{cityCode},#{organizationId},#{profits},#{requires})
+	</insert>
+	<update id="changeState">
+		update Product set state=#{state} where id=#{id}
+	</update>
+	<update id="update">
+		update Product set title=#{title}, loanType=#{loanType}, profits=#{profits}, requires=#{requires} where id=#{id}
+	</update>
+</mapper>

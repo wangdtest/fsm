@@ -1,0 +1,15 @@
+<html ng-app = "taskApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="css/my.css">
+<script type="text/javascript" src="lib/FuRoomClient.js"></script>
+<script src="http://123.57.6.110/furoom/gpps.service.IHelpService?json"></script>
+<script src="lib/angular-1.2.20/angular.min.js"></script>
+<script src="lib/TaskController.js"></script>
+</head>
+<body ng-controller='TaskCtrl'>
+		<div class="myhead">Your Preview Jobs</div>
+		<div class="mytail">total {{total}}</div>
+		<button ng-click="refresh()">查看</button>
+</body>
+</html>

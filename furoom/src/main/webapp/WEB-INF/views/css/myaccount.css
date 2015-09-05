@@ -1,0 +1,97 @@
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+li {
+    float: right;
+    border: 1px solid #000;
+    border-bottom-width: 0;
+    margin: 3px 3px 0px 3px;
+    padding: 5px 5px 0px 5px;
+    background-color: #CCC;
+    color: #696969;
+    cursor:pointer
+}
+#tabs{
+	width:1000px;
+	margin: 0 auto;
+}
+#mainView {
+    border: 1px solid black;
+	clear: both;
+	padding: 10px 0,0,0;
+	min-height:400px;
+}
+#top{
+	width:980px;
+	min-height:100px;
+	margin: 0 auto;
+}
+.active {
+    background-color: #FFF;
+    color: #000;
+}
+.mytail{
+	width:100%;
+	margin-top:10px;
+	text-align:center;
+	font-size : 18px
+}
+.mytable {
+	margin-top:15px;
+	width:100%
+}
+.mytable th{
+	border-bottom:solid green 1px
+}
+.mytable td{
+	text-align:center;
+}
+span.grey{
+	display:inline-block;
+	width:120px;
+	color : #333;
+	text-align:left;
+}
+span.orange{
+	display:inline-block;
+	width:170px;
+	color : orange;
+	text-align:left;
+}
+div.radio{
+	float:left;
+}
+div.head{
+	text-align:right;
+	padding-right:15px;
+	background-color:#999;
+	color:white;
+	min-height:30px; 
+	padding-top:5px;
+}
+div.head a{
+	color:white;
+	text-decoration:none;
+}
+div.banner{
+	
+}
+div.navigator{
+	
+}
+div.textcontent{
+	margin-top:25px;
+	text-align:center;
+}
+.fieldsetcontent{
+	 width:400px; 
+	 padding-left:50px;
+	 margin: 15 auto;
+}
+div.wholecontent{
+	 width:1000px; 
+	 padding-left:50px;
+	 margin: 0 auto;
+}

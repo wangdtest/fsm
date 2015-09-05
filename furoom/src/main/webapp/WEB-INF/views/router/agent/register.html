@@ -1,0 +1,75 @@
+<fieldset class="fieldsetcontent">
+			<legend>信贷经理注册</legend>
+			<form name="userForm" novalidate>
+			<div style="margin-bottom:10px;margin-top:10px;">
+				<label style="width:200px">您的称呼:</label> 
+				<input type="text" style="width:200px;" placeholder="您的称呼" name="name" ng-model="user.name" ng-minlength=1 ng-maxlength=5 required />
+				<div class="error" ng-show="userForm.name.$dirty && userForm.name.$invalid">
+				<small class="error" ng-show="userForm.name.$error.required">称呼不能为空</small> 
+				<small class="error"  ng-show="userForm.name.$error.minlength">称呼最小长度不能小于3</small> 
+				<small class="error" ng-show="userForm.name.$error.maxlength">称呼最大长度不能大于5</small>
+				</div>
+			</div>
+			
+			<div style="margin-bottom:10px;margin-top:10px;">
+        			<label>
+            			<input type="radio" name="sex" value="man" ng-model="user.sex"/>
+            			先生
+        			</label>
+        			<label>
+            			<input type="radio" name="sex" value="woman" ng-model="user.sex"/>
+            			女士
+        			</label>
+   			</div>
+   			
+   			<div style="margin-bottom:10px;">
+				<label>单位名称:</label> 
+				<select style="width:200px;" ng-model="user.organization" ng-options="y.name for y in organizations">
+				</select>
+			</div>
+   			
+   			<div style="margin-bottom:10px;margin-top:10px;">
+				<label>所在省份:</label> 
+				<select style="width:200px;" ng-change="provinceChange(user.province)" ng-model="user.province" ng-options="y.name for y in provinces">
+				</select>
+			</div>
+			<div style="margin-bottom:10px;">
+				<label>所在市区:</label> 
+				<select style="width:200px;" ng-model="user.city" ng-options="y.name for y in currentProvince.citys">
+				</select>
+			</div>
+			
+			<div style="margin-bottom:10px;margin-top:10px;">
+				<label style="width:200px;">验证码&nbsp;&nbsp;:</label> 
+				<input type="text" style="width:90px;" placeholder="图片验证码" name="picValidate" ng-model="user.picValidate" ng-minlength=4 ng-maxlength=4 required />
+				<image src="img/validatecode.png" style="width:100px; height:22px;"></image>
+				<div class="error" ng-show="userForm.picValidate.$dirty && userForm.picValidate.$invalid">
+				<small class="error" ng-show="userForm.picValidate.$error.required">图片验证码不能为空</small> 
+				<small class="error"  ng-show="userForm.picValidate.$error.minlength">图片验证码最小长度不能小于4</small> 
+				<small class="error" ng-show="userForm.picValidate.$error.maxlength">图片验证码最大长度不能大于4</small>
+				</div>
+				<div style="clear:both;"></div>
+			</div>
+			<div style="margin-bottom:10px;margin-top:10px;">
+				<label style="width:200px;">手机号码:</label> 
+				<input type="text" style="width:90px;" placeholder="手机号码" name="tel" ng-model="user.tel" ng-minlength=11 ng-maxlength=11 required />
+				<button class="button radius" style="width:100px;">发送验证码</button>
+				<div class="error" ng-show="userForm.tel.$dirty && userForm.tel.$invalid">
+				<small class="error" ng-show="userForm.tel.$error.required">手机号码不能为空</small> 
+				<small class="error"  ng-show="userForm.tel.$error.minlength">手机号码最小长度不能小于11</small> 
+				<small class="error" ng-show="userForm.tel.$error.maxlength">手机号码最大长度不能大于11</small>
+				</div>
+				<div style="clear:both;"></div>
+			</div>
+			<div style="margin-bottom:10px;margin-top:10px;">
+				<label style="width:200px">验证码&nbsp;&nbsp;:</label> 
+				<input type="text" style="width:200px;" placeholder="手机验证码" name="telValidate" ng-model="user.telValidate" ng-minlength=5 ng-maxlength=5 required />
+				<div class="error" ng-show="userForm.telValidate.$dirty && userForm.telValidate.$invalid">
+				<small class="error" ng-show="userForm.telValidate.$error.required">手机验证码不能为空</small> 
+				<small class="error"  ng-show="userForm.telValidate.$error.minlength">手机验证码最小长度不能小于5</small> 
+				<small class="error" ng-show="userForm.telValidate.$error.maxlength">手机验证码最大长度不能大于5</small>
+				</div>
+			</div>
+			<button ng-click="register()" class="button radius" style="width:270px;">注册</button>
+				</form>
+			</fieldset>

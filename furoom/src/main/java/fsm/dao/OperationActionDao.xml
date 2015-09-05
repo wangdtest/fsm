@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fsm.dao.IOperationActionDao">
+	<select id="findAll" resultType="fsm.model.OperationAction">
+	   select * from OperationAction 
+	   where operationId=#{operationId}	   
+	</select>
+	<select id="find" parameterType="Integer" resultType="fsm.model.OperationAction">
+		select *
+		from OperationAction where id=#{id}
+	</select>
+	<insert id="create" parameterType="fsm.model.OperationAction"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into
+		OperationAction(operationId,title,description,createTime,lastmodifyTime,state)
+		values(#{operationId},#{title},#{description},#{createTime},#{lastmodifyTime},#{state})
+	</insert>
+	<delete id="remove" parameterType="Integer">
+		delete from OperationAction where id = #{id}
+	</delete>
+	<update id="changeState">
+		update OperationAction set
+		state=#{state}
+		<if test="description != null">
+		  , description=#{description}
+		</if> 
+		where id=#{id}
+	</update>
+</mapper>

@@ -1,0 +1,31 @@
+<html ng-app = "MyAccountApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="/resources/FuRoomClient.js"></script>
+<script src="/furoom/fsm.service.IUserService/json"></script>
+<script src="/furoom/fsm.service.IOperationService/json"></script>
+<script src="/furoom/fsm.service.IProductService/json"></script>
+<link href="css/myaccount.css" rel="stylesheet">
+</head>
+<body ng-controller="myaccountCtrl">
+
+	<fieldset id="top">
+		<legend>您好：{{user.name}}</legend>
+		<span class="orange">展示内容</span>
+	</fieldset>
+	<div id="tabs" ng-controller="myaccountCtrl">
+        <ul>
+            <li ng-repeat="tab in tabs" 
+                ng-class="{active:isActiveTab(tab.url)}" 
+                ng-click="onClickTab(tab)">{{tab.title}}</li>
+        </ul>
+        <div id="mainView">
+            <div ng-include="currentTab.url"></div>
+        </div>
+    </div>
+
+		<script src="/resources/angular.js"></script>
+		<script src="controller/config.js"></script>
+		<script src="controller/MyAccountController.js"></script>
+</body>
+</html>

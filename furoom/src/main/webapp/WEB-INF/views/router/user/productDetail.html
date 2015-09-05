@@ -1,0 +1,39 @@
+	<fieldset id="top">
+		<legend>{{product.companyname}}-{{product.title}}</legend>
+		<div class="textcontent">
+			<span class="grey">{{product.profitsArray[0]}}</span><span class="grey">{{product.profitsArray[1]}}</span><span class="grey">{{product.profitsArray[2]}}</span><br>
+			<span class="grey">贷款金额</span><span class="orange">{{amountName}}</span><span class="grey">贷款期限</span><span class="orange">{{periodName}}</span><br>
+			<span class="grey">总利息</span><span class="orange">12万</span><span class="grey">月供</span><span class="orange">4467元</span><br>
+			<span class="grey">利率说明：月管理费0.6%</span>
+		</div>
+		<div class="textcontent">
+		<button>我要申请</button>
+		</div>
+	</fieldset>
+	<fieldset id="top">
+		<legend>信贷经理</legend>
+		<table class="mytable">
+			<tr><th>姓名</th><th>操作</th></tr>
+			<tr ng-repeat='agent in agents'>
+				<td><span>{{agent.name}}</span></td>
+				<td><button ng-click='bind(agent.id)'>申请</button></td>
+			</tr>
+		</table>
+	</fieldset>
+	<fieldset id="top">
+		<legend>申请条件</legend>
+		XXXXXXXX
+	</fieldset>
+	<fieldset id="top">
+		<legend>所需材料</legend>
+		XXXXXXXX
+	</fieldset>
+	<fieldset id="top">
+		<legend>成功案例</legend>
+		XXXXXXXX
+	</fieldset>
+	<fieldset id="top">
+		<legend>常见问题</legend>
+		XXXXXXXX
+	</fieldset>
+	

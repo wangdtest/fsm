@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="  
+        http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+        http://www.springframework.org/schema/mvc  
+        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd  
+        http://www.springframework.org/schema/context    
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="locations">
+			<list>
+				<value>file:/root/install/tomcat/webapps/ROOT/WEB-INF/spring/conf.properties</value>
+			</list>
+		</property>
+	</bean>
+	<mvc:annotation-driven />
+	<!-- 注释资源扫描包路径 -->
+	<context:component-scan base-package="com.furoom,fsm" />
+	<!-- <mvc:default-servlet-handler /> -->
+	<bean id="authorityValidateService" class="com.furoom.security.AuthorityValidateServiceImpl">
+		<property name="configLocation" value="classpath:StaticRolesConfig.xml"></property>
+	</bean>
+	<import resource="classpath:spring-dao.xml"/>
+	
+	<!-- 拦截器配置 -->
+	<mvc:interceptors>
+	  <!-- session超时 -->
+	  <mvc:interceptor>
+	    <mvc:mapping path="/furoom/*/invoke"/>
+	    <bean class="com.furoom.interceptor.MethodInvokePermissionIntercepter">
+	      <property name="allowUrls">
+	        <list>
+	          <!-- 如果请求中包含以下路径，则不进行拦截 -->
+	          <value>/furoom</value>
+	        </list>
+	      </property>
+	    </bean>
+	  </mvc:interceptor>
+	</mvc:interceptors>
+	
+	<!-- 自定义异常处理，SimpleMappingExceptionResolver这个类可以是个空类，但是要写，方便在java代码里面使用 -->
+  	<!-- <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	  <property name="exceptionMappings">
+	    <props>
+	      <prop key="com.ziyou.platform.interceptor.SessionTimeoutException">redirect:/login</prop>
+	    </props>
+	  </property>
+	</bean> -->
+	
+</beans>

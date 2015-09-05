@@ -1,0 +1,21 @@
+<fieldset style="width:400px; padding-left:50px;">
+				<legend>第三步：补充贷款需求</legend>
+		    <div style="margin-bottom:10px;margin-top:10px;">
+				<label>所在省份:</label> 
+				<select style="width:200px;" ng-change="provinceChange(operation.province)" ng-model="operation.province" ng-options="y.name for y in provinces">
+				</select>
+			</div>
+			<div style="margin-bottom:10px;">
+				<label>所在市区:</label> 
+				<select style="width:200px;" ng-model="operation.city" ng-options="y.name for y in currentProvince.citys">
+				</select>
+			</div>
+			<div style="margin-bottom:10px;">
+				<label>贷款偏好:</label> 
+				<label ng-repeat="item in operation.fav">
+        			<input type="checkbox" ng-model="item.checked"/>{{item.text}}
+    			</label>
+			</div>
+			
+			<button ng-click="complete()" class="button radius" style="width:270px;">完成</button>
+			</fieldset>

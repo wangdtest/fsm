@@ -1,0 +1,71 @@
+<fieldset class="fieldsetcontent">
+			<legend>产品基本信息</legend>
+			<form name="productForm" novalidate>
+			<div style="margin-bottom:10px;margin-top:10px;">
+				<label style="width:200px">产品名称:</label> 
+				<input type="text" style="width:200px;" placeholder="产品名称" name="title" ng-model="product.title" required />
+				<div class="error" ng-show="productForm.title.$dirty && productForm.title.$invalid">
+				<small class="error" ng-show="productForm.title.$error.required">名称不能为空</small> 
+				</div>
+			</div>
+			<div style="margin-bottom:10px;margin-top:10px;">
+				<label>贷款类型:</label> 
+				<select style="width:200px;" ng-model="product.type" ng-options="y.name for y in types">
+				</select>
+			</div>
+   			<div style="margin-bottom:10px;margin-top:10px;">
+   				<label>产品特点:</label> 
+   				<textarea style="width:200px; min-height:80px;" placeholder="请填写优点，多个优点以分号分隔" name="profits" ng-model="product.profits"></textarea>
+   			</div>
+   			<div style="margin-bottom:10px;margin-top:10px;">
+   				<label>贷款要求:</label> 
+   				<textarea style="width:200px; min-height:80px;" placeholder="请填写要求，多个要求以分号分隔" name="requires" ng-model="product.requires"></textarea>
+   			</div>
+			<button ng-click="confirm()" class="button radius" style="width:270px;">确定</button>
+				</form>
+			</fieldset>
+			<fieldset class="fieldsetcontent">
+			<legend>产品详细步骤</legend>
+			
+			<table class="mytable">
+				<tr><th>序号</th><th>步骤名</th><th>描述</th><th>预计时间(天)</th><th>操作</th></tr>
+				<tr ng-repeat='action in actions'>
+					<td><span>{{action.ind}}</span></td>
+					<td><span>{{action.title}}</span></td>
+					<td><span>{{action.description}}</span></td>
+					<td><span>{{action.estimatedTime}}</span></td>
+					<td><span><button>删除</button></span></td>
+				</tr>
+			</table>
+			<fieldset>
+			<legend>添加步骤</legend>
+			<form name="actionForm" novalidate>
+			<div style="margin-bottom:10px;margin-top:10px;">
+				<label style="width:200px">步骤顺序:</label> 
+				<input type="number" style="width:200px;" placeholder="步骤顺序" name="ind" ng-model="action.ind" required />
+				<div class="error" ng-show="actionForm.ind.$dirty && actionForm.ind.$invalid">
+				<small class="error" ng-show="actionForm.ind.$error.required">顺序号不能为空</small> 
+				</div>
+			</div>
+			<div style="margin-bottom:10px;margin-top:10px;">
+				<label style="width:200px">步骤名称:</label> 
+				<input type="text" style="width:200px;" placeholder="步骤名称" name="title" ng-model="action.title" required />
+				<div class="error" ng-show="actionForm.title.$dirty && actionForm.title.$invalid">
+				<small class="error" ng-show="actionForm.title.$error.required">步骤名称不能为空</small> 
+				</div>
+			</div>
+			<div style="margin-bottom:10px;margin-top:10px;">
+				<label style="width:200px">预计时间:</label> 
+				<input type="number" style="width:200px;" placeholder="预计时间" name="estimatedTime" ng-model="action.estimatedTime" required />
+				<div class="error" ng-show="actionForm.estimatedTime.$dirty && actionForm.estimatedTime.$invalid">
+				<small class="error" ng-show="actionForm.estimatedTime.$error.required">预计时间不能为空</small> 
+				</div>
+			</div>
+			<div style="margin-bottom:10px;margin-top:10px;">
+   				<label>步骤描述:</label> 
+   				<textarea style="width:200px; min-height:50px;" placeholder="请填写该步骤的描述" name="description" ng-model="action.description"></textarea>
+   			</div>
+   			<button ng-click="add()" class="button radius" style="width:270px;">添加</button>
+			</form>
+			</fieldset>
+			</fieldset>
