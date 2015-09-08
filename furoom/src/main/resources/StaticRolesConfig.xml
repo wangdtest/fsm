@@ -44,6 +44,7 @@
 	<Role id="agentAuditSuccess" privilege = "11" limitedType="0" extendsRoleIds="agentInit">
         <permissionRules>
         <PermissionRule  entityLimitType="fsm.service.IProductService" operations="createProduct;addProductAction;applyAuditProduct;addRelationTo;removeRelationTo;updateProduct"/>
+        <PermissionRule  entityLimitType="fsm.service.IOperationService" operations="takeoverOperation;completeOperation"/>
         </permissionRules>
     </Role>
     
@@ -61,7 +62,7 @@
         <permissionRules>
          <PermissionRule  entityLimitType="fsm.service.IUserService" operations="findAllByPrivilege;auditAgent"/>
          <PermissionRule  entityLimitType="fsm.service.IProductService" operations="auditProduct"/>
-         <PermissionRule  entityLimitType="fsm.service.IOperationService" operations="auditOperation"/>
+         <PermissionRule  entityLimitType="fsm.service.IOperationService" operations="auditOperation;findAllOperationByCityAndStateAndType"/>
         </permissionRules>
     </Role>
     
