@@ -1,11 +1,12 @@
 <table class="mytable">
-	<tr><th>贷款名称</th><th>贷款金额</th><th>贷款期限</th><th>贷款类型</th><th>操作</th></tr>
+	<tr><th>贷款名称</th><th>贷款金额</th><th>贷款期限</th><th>贷款类型</th><th>查看</th><th>操作</th></tr>
 	<tr ng-repeat='data in datas'>
 		<td><span>{{data.productname}}</span></td>
 		<td><span>{{data.amount}}</span></td>
 		<td><span>{{data.period}}</span></td>
 		<td><span>{{data.loanType}}</span></td>
 		<td><button>查看</button></td>
+		<td><button ng-click='accept(data.id)'>接收</button></td>
 	</tr>
 </table>
 <div class="mytail">总共 {{total}}条</div>

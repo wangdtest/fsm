@@ -344,22 +344,41 @@ $scope.onClickTab = function (tab) {
 $scope.isActiveTab = function(tabUrl) {
     return tabUrl == $scope.currentTab.url;
 }
-$scope.edit = function(productId){
-	$location.path('/detail/0/'+productId);
-}
-$scope.apply = function(productId){
+
+
+
+$scope.accept = function(operationId){
 	try{
-		productService.applyAuditProduct(productId);
-		alert('申请审核成功');
+		operationService.takeoverOperation(operationId);
+		alert('审核完毕');
 		$scope.onClickTab($scope.tabs[0]);
 	}catch(e){
 		alert(e.message);
 	}
 }
 
-$scope.addproduct = function(){
-	$location.path('/relate');
+$scope.complete = function(operationId){
+	try{
+		operationService.completeOperation(operationId, 4);
+		alert('执行完毕');
+		$scope.onClickTab($scope.tabs[0]);
+	}catch(e){
+		alert(e.message);
+	}
 }
+
+
+$scope.error = function(operationId){
+	try{
+		operationService.completeOperation(operationId, 5);
+		alert('因故未完成');
+		$scope.onClickTab($scope.tabs[0]);
+	}catch(e){
+		alert(e.message);
+	}
+}
+
+
 });
 
 

@@ -29,8 +29,12 @@ var queryProductByState=function(state){
 }
 
 var queryOperationByState=function(state){
-	var operations = operationService.findAllOperationByAgentAndStateAndType(state, -1);
+	var res = operationService.findAllOperationByCityAndStateAndType(null, state, -1, 0, 100);
 	var datasArray = new Array();
+	if(res==null || res.get("result")==null){
+		return datasArray;
+	}
+	var operations = res.get("result");
 	for(var i=0; i<operations.size(); i++){
 		var d = operations.get(i);
 		datasArray.push( {id:d.id,productname:"产品名", amount:d.amount,period:d.period,loanType:d.loanType})
