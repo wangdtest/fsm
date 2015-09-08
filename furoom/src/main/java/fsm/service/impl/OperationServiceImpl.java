@@ -53,6 +53,19 @@ public class OperationServiceImpl implements IOperationService {
 	}
 	
 	@Override
+	public Map<String, Object> findAllOperationByCityAndStateAndType(String cityCode, int state, int loanType, int offset, int recnum) throws Exception{
+		User user = userService.getCurrentUser();
+		if(user==null || user.getPrivilege()!=User.PRIVILEGE_OPERATOR){
+			throw new Exception("无权操作");
+		}
+		int count = operationDao.countByCityAndStateAndType(cityCode, state, loanType);
+		if(count==0)
+			return Pagination.buildResult(null, count, offset, recnum);
+		List<Operation> resList = operationDao.findAllByCityAndStateAndType(cityCode, state, loanType, offset, recnum);
+		return Pagination.buildResult(resList,count,offset, recnum);
+	}
+	
+	@Override
 	public List<Operation> findAllOperationByAgentAndStateAndType(int state, int loanType) throws Exception{
 		User user = userService.getCurrentUser();
 		if(user==null){
@@ -251,5 +264,29 @@ public class OperationServiceImpl implements IOperationService {
 		}
 		
 		stateLogService.change(operationActionId, sourceState, action.getState(), StateLog.TYPE_OPERATIONACTION);
+	}
+	
+	@Override
+	public void completeOperation(Integer operationId, int state) throws Exception{
+		User user = userService.getCurrentUser();
+		if(user==null || user.getPrivilege()!=User.PRIVILEGE_AGENT_AUDIT_SUCCESS){
+			throw new Exception("没有相关权限");
+		}
+		
+		if(state!=Operation.STATE_DONE && state!=Operation.STATE_EXCEPTION){
+			throw new Exception("状态不对");
+		}
+		
+		Operation operation = find(operationId);
+		if(operation==null || operation.getState()!=Operation.STATE_PROCESSING){
+			throw new Exception("贷款申请状态不对，无法关闭");
+		}
+		
+		if(user.getId()!=operation.getAgentId()){
+			throw new Exception("没有相关权限");
+		}
+		
+		operationDao.changeState(operation.getId(), state, System.currentTimeMillis());
+		stateLogService.change(operation.getId(), Operation.STATE_PROCESSING, state, StateLog.TYPE_OPERATION);
 	}
 }

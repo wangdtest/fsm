@@ -11,6 +11,8 @@ public interface IOperationService {
 	
 	public List<Operation> findAllOperationByAgentAndStateAndType(int state, int loanType) throws Exception;
 	
+	public Map<String, Object> findAllOperationByCityAndStateAndType(String cityCode, int state, int loanType, int offset, int recnum) throws Exception;
+	
 	public Operation find(Integer operationId);
 	
 	/**
@@ -77,5 +79,15 @@ public interface IOperationService {
 	 * 
 	 * */
 	public void completeOperationAction(Integer operationActionId, int state, String description) throws Exception;
+	
+	/**
+	 * 信贷经理接管后的修改operation的状态。完结状态为STATE_DONE = 4; STATE_EXCEPTION = 5;
+	 * 
+	 * 
+	 * @param operationId 操作Id
+	 * @param state       		操作的状态
+	 * 
+	 * */
+	public void completeOperation(Integer operationId, int state) throws Exception;
 	
 }
