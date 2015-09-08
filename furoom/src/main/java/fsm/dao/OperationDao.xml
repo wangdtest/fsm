@@ -29,6 +29,36 @@
 		order by createtime desc 
 		LIMIT #{offset}, #{recnum}
 	</select>
+	
+	<select id="countByCityAndStateAndType" resultType="int">
+	   select count(*) from Operation 
+	   where 1=1 
+	   <if test="city != null">
+	   	and city=#{city}	   
+		</if>
+		<if test="state != -1">
+	   	and state=#{state}	   
+		</if>
+		<if test="loanType != -1">
+	   	and loanType=#{loanType}	   
+		</if>
+	</select>
+	<select id="findAllByCityAndStateAndType" resultType="fsm.model.Operation">
+	   select * from Operation 
+	   where 1=1 
+	   <if test="city != null">
+	   	and city=#{city}	   
+		</if>
+		<if test="state != -1">
+	   	and state=#{state}	   
+		</if>
+		<if test="loanType != -1">
+	   	and loanType=#{loanType}	   
+		</if>
+		order by createtime desc 
+		LIMIT #{offset}, #{recnum}
+	</select>
+	
 	<select id="findAllByAgentIdAndStateAndType" resultType="fsm.model.Operation">
 	   select * from Operation 
 	   where 1=1 

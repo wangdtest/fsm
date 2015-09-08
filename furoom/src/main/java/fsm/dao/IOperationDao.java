@@ -10,6 +10,10 @@ public interface IOperationDao {
 	public int countByUserIdAndStateAndType(@Param("userId")Integer userId, @Param("state")int state, @Param("loanType")int loanType);
 	public List<Operation> findAllByUserIdAndStateAndType(@Param("userId")Integer userId, @Param("state")int state, @Param("loanType")int loanType, @Param("offset")int offset, @Param("recnum")int recnum);
 	
+	public int countByCityAndStateAndType(@Param("city")String city, @Param("state")int state, @Param("loanType")int loanType);
+	public List<Operation> findAllByCityAndStateAndType(@Param("city")String city, @Param("state")int state, @Param("loanType")int loanType, @Param("offset")int offset, @Param("recnum")int recnum);
+	
+	
 	public List<Operation> findAllByAgentIdAndStateAndType(@Param("agentId")Integer agentId, @Param("state")int state, @Param("loanType")int loanType);
 	
 	public Operation find(Integer id);
