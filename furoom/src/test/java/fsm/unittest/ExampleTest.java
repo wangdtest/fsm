@@ -13,4 +13,8 @@ public class ExampleTest {
 	public void Test2(){
 		Assert.assertEquals(true, true);
 	}
+	@Test
+	public void Test3(){
+		Assert.assertEquals(true, true);
+	}
 }
